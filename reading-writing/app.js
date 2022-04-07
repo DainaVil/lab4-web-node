@@ -31,10 +31,10 @@ app.put('/products', function (req, res) {
 
 app.delete('/products/:id', function (req, res) {
 	for (var i = 0; i < products.length; i++) {
-    	if (products[i].id === +req.body['id']) {
-    		res.send(products[i])
-      		products.splice(i, 1);
-    	}
+		const productToDelete = products.find(p => p.id === +req.body.id);
+      	products = products.filter(p => p.id !== +req.body.id);
+      	res.send(productToDelete);
+    	
   	}
 });
 
